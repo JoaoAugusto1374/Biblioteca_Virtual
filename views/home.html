@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Biblioteca Virtual</h2>
+
+  <div class="form-inline">
+    <input type="text" ng-model="busca" placeholder="Buscar por título" class="form-control" />
+    <select ng-model="filtroGenero" class="form-control">
+      <option value="">Todos os gêneros</option>
+      <option ng-repeat="g in generos">{{g}}</option>
+    </select>
+    <select ng-model="filtroAutor" class="form-control">
+      <option value="">Todos os autores</option>
+      <option ng-repeat="a in autores">{{a}}</option>
+    </select>
+  </div>
+
+  <div class="row" ng-if="livros.length">
+    <div class="col-md-4" ng-repeat="livro in livros | filter:{title: busca} | filter:{author_name: filtroAutor} | filter:{subject: filtroGenero}">
+      <div class="thumbnail">
+        <img ng-src="https://covers.openlibrary.org/b/id/{{livro.cover_i}}-M.jpg" alt="{{livro.title}}" />
+        <div class="caption">
+          <h4>{{livro.title}}</h4>
+          <p>{{livro.author_name[0]}}</p>
+          <a href="#!/livro/{{livro.key}}" class="btn btn-primary">Detalhes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="carregando" class="alert alert-info">Carregando...</div>
+  <div ng-if="erro" class="alert alert-danger">Erro ao carregar livros</div>
+</div>

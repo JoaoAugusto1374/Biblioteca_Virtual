@@ -1,0 +1,8 @@
+<div class="container" ng-if="livro">
+  <h2>{{livro.title}}</h2>
+  <p><strong>Autor:</strong> {{livro.authors[0].name}}</p>
+  <p><strong>Data de Publicação:</strong> {{livro.publish_date}}</p>
+  <p><strong>ISBN:</strong> {{livro.isbn ? livro.isbn[0] : 'N/A'}}</p>
+  <p><strong>Resumo:</strong> {{livro.description ? livro.description.value || livro.description : 'Sem resumo disponível.'}}</p>
+  <a href="#!" class="btn btn-default">Voltar</a>
+</div>
