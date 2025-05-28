@@ -14,5 +14,22 @@ app.config(function($routeProvider) {
       templateUrl: 'views/login.html',
       controller: 'LoginController'
     })
-    .otherwise({ redirectTo: '/' });
+    .otherwise({ redirectTo: '/login' });  // mudar para login
+});
+
+// Proteção das rotas para exigir login
+app.run(function($rootScope, $location) {
+  $rootScope.$on('$routeChangeStart', function(event, next) {
+    const autenticado = localStorage.getItem('autenticado') === 'true';
+
+    // Se tentar acessar qualquer rota diferente de login sem estar autenticado
+    if (!autenticado && next.templateUrl !== 'views/login.html') {
+      $location.path('/login');
+    }
+
+    // Se já autenticado e tentar acessar login, redireciona para home
+    if (autenticado && next.templateUrl === 'views/login.html') {
+      $location.path('/');
+    }
+  });
 });

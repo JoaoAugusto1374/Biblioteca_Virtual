@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, $http) {
+app.controller('HomeController', function($scope, $http, $location) {
   $scope.carregando = true;
   $scope.livros = [];
   $scope.generos = [];
@@ -11,5 +11,12 @@ app.controller('HomeController', function($scope, $http) {
     $scope.carregando = false;
   }).catch(function() {
     $scope.erro = true;
+    $scope.carregando = false;
   });
+
+  // Função logout que limpa o localStorage e redireciona para /login
+  $scope.logout = function() {
+    localStorage.removeItem('autenticado');
+    $location.path('/login');
+  };
 });

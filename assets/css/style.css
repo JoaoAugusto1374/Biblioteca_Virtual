@@ -1,0 +1,31 @@
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-livro {
+  transition: transform 0.2s ease;
+}
+
+.card-livro:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #0d6efd;
+  color: white;
+}
